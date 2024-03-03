@@ -64,17 +64,10 @@ public class GameRunner {
 
     }
 
-    public boolean isGoodInput(String toCheck)
+    public boolean isGoodInput(String toCheck) throws NullPointerException
     {
         boolean isValid = false;
 
-        // a note on logic. If we don't have the right word length,
-        // our flag will be false. If we do, it passes.
-        // Then we need to check that each letter in the word is actually a legitimate
-        // letter.
-        // It's easier to do this by setting the flag to false as soon as we find a character
-        // which is not a letter. Once we find something, we don't have to check the rest of the word
-        // so we'll stop to be more efficient.
         if (toCheck.length() == WORD_LENGTH)
         {
             isValid = true;
