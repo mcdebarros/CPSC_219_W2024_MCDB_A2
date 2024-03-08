@@ -1,6 +1,4 @@
-import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameRunnerTests {
@@ -37,7 +35,7 @@ public class GameRunnerTests {
     {
         GameRunner testGameRunner = new GameRunner();
         String toCheck = null;
-        assertThrows(NullPointerException.class,() -> {testGameRunner.isGoodInput(toCheck);});
+        assertThrows(NullPointerException.class,() -> testGameRunner.isGoodInput(toCheck));
     }
 
     @Test

@@ -1,23 +1,54 @@
-import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
-
 public class StateTests {
-    // TODO:
-    // Build test cases which test each constructor and each class method
 
-    // Test default constructor here
+    @Test
+    void test_constructor_noInput() {
 
+        State testState = new State();
+        assertNotNull(testState,"Failed to construct state object.");
+    }
 
-    // Test State(String) here
+    @Test
+    void test_constructor_input() {
 
-    // Test updateState() here
+        State testState= new State("DONUT");
+        assertNotNull(testState,"Failed to construct state object.");
+    }
 
-    // Test hasWin() here
+    @Test
+    void test_updateState() {
 
-    // Test toString here
+        State defaultState = new State("DONUT");
+        State testState = new State("DONUT");
+        testState.updateState("DONUT");
+        assertNotEquals(defaultState,testState,"State remains unchanged from default.");
+    }
+
+    @Test
+    void test_noWin() {
+
+        State testState = new State();
+        boolean winner = testState.hasWin();
+        assertFalse(winner,"Game won despite no state update from default.");
+    }
+
+    @Test
+    void test_hasWin() {
+
+        State testState = new State("DONUT");
+        testState.updateState("DONUT");
+        boolean winner = testState.hasWin();
+        assertTrue(winner,"Game lost despite correct guess.");
+    }
+
+    @Test
+    void test_toString() {
+
+        State testState = new State();
+        String expect = "State{secretWord='BLAST', letterStatus=[0, 0, 0, 0, 0]}";
+        String actual = testState.toString();
+        assertEquals(expect,actual,"toString() method failed to produce expected string.");
+    }
 }

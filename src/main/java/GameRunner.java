@@ -38,14 +38,13 @@ public class GameRunner {
     {
         int numTurns = 0;
         String guess = "";
-        gameState= new State();
+        gameState = new State();
         Scanner input = new Scanner(System.in);
 
         while ((numTurns < MAX_TURNS) && (!gameState.hasWin()))
         {
-            System.out.println("Type a six-letter word");
-            guess = input.nextLine();
-            System.out.println(guess);
+            System.out.println("Type a five-letter word");
+            guess = (input.nextLine()).toUpperCase();
 
             if (!isGoodInput(guess))
             {

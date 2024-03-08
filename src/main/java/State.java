@@ -1,11 +1,13 @@
+//package ;
+
 import java.util.*;
 
 public class State {
 
-    private String secretWord;
+    private final String secretWord;
     private int[] letterStatus;
     private final int WORD_LENGTH = 5;
-    private final String DEFAULT_WORD = "START";
+    private final String DEFAULT_WORD = "BLAST";
 
     private final int NO_MATCH = 0;
     private final int IN_WORD = 1;
@@ -13,7 +15,7 @@ public class State {
 
     public State()
     {
-         secretWord = new String(DEFAULT_WORD);
+         secretWord = DEFAULT_WORD;
          letterStatus = new int[WORD_LENGTH];
          for (int i = 0; i < WORD_LENGTH;i++)
          {
@@ -24,7 +26,7 @@ public class State {
 
     public State(String inputWord)
     {
-        secretWord = new String(inputWord);
+        secretWord = inputWord;
         letterStatus = new int[WORD_LENGTH];
         for (int i = 0; i < WORD_LENGTH;i++)
         {
@@ -57,9 +59,6 @@ public class State {
 
     @Override
     public String toString() {
-        return "State{" +
-                "secretWord='" + secretWord + '\'' +
-                ", letterStatus=" + Arrays.toString(letterStatus) +
-                '}';
+        return STR."State{secretWord='\{secretWord}\{'\''}, letterStatus=\{Arrays.toString(letterStatus)}\{'}'}";
     }
 }
