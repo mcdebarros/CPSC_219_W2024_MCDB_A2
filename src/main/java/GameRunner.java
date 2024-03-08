@@ -1,21 +1,22 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class GameRunner {
+
     private final int MAX_TURNS = 6;
     private final int WORD_LENGTH = 5;
-    State gameState;
-    HashSet<String> validWords;
+    private int numTurns;
+    private State gameState;
+    private final ArrayList<String> VALID_WORDS;
+    private final Random INDEX = new Random();
 
     public GameRunner()
     {
         // A note: pre-setting the initial capacity of the HashSet to approximately the right size
         // should make populating the HashSet a bit faster.
-        validWords = new HashSet<String>(5800);
+        VALID_WORDS = new ArrayList<String>();
         try
         {
             FileReader fReader = new FileReader("src/main/sgb-words.txt");
@@ -24,7 +25,7 @@ public class GameRunner {
             String currentLine = null;
             while((currentLine = bReader.readLine()) != null)
             {
-                validWords.add(currentLine.strip());
+                VALID_WORDS.add((currentLine.strip()).toUpperCase());
             }
         }
         catch(IOException ioE)
@@ -36,9 +37,9 @@ public class GameRunner {
 
     public void playGame()
     {
-        int numTurns = 0;
-        String guess = "";
-        gameState = new State();
+        numTurns = 0;
+        String guess;
+        gameState = new State(VALID_WORDS);
         Scanner input = new Scanner(System.in);
 
         while ((numTurns < MAX_TURNS) && (!gameState.hasWin()))
@@ -65,26 +66,8 @@ public class GameRunner {
 
     public boolean isGoodInput(String toCheck) throws NullPointerException
     {
-        boolean isValid = false;
-
-        if (toCheck.length() == WORD_LENGTH)
-        {
-            isValid = true;
-            for (Character letter:toCheck.toCharArray())
-            {
-                if (!Character.isLetter(letter)) {
-                    isValid = false;
-                    break;
-                }
-            }
-        }
-
-        return isValid;
-    }
-
-    public boolean isEnglishAndFiveLetters(String toCheck)
-    {
-        return validWords.contains(toCheck);
+        toCheck = InputChecker.fixCase(toCheck);
+        return (InputChecker.allAlpha(toCheck) && InputChecker.notNull(toCheck) && InputChecker.correctLength(toCheck,WORD_LENGTH) && InputChecker.isEnglish(toCheck, VALID_WORDS));
     }
 
 

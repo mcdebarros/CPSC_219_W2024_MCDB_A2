@@ -1,8 +1,8 @@
-import java.util.HashSet;
+import java.util.*;
 
 public class InputChecker {
 
-    public boolean allAlpha(String word) {
+    public static boolean allAlpha(String word) {
 
         boolean onlyAlpha = true;
         for (Character letter:word.toCharArray()) {
@@ -14,18 +14,23 @@ public class InputChecker {
         return onlyAlpha;
     }
 
-    public boolean correctLength(String word) {
+    public static boolean correctLength(String word, int length) {
 
-        return word.length() == 5;
+        return word.length() == length;
     }
 
-    public boolean isEnglish(String word, HashSet<String> list) {
+    public static boolean isEnglish(String word, ArrayList<String> list) {
 
         return list.contains(word);
     }
 
-    public String fixCase(String word) {
+    public static String fixCase(String word) {
 
         return word.toUpperCase();
+    }
+
+    public static boolean notNull(String word) {
+
+        return (word != null);
     }
 }

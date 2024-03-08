@@ -1,12 +1,15 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.*;
 
 public class StateTests {
+
+    ArrayList<String> list = new ArrayList<>();
 
     @Test
     void test_constructor_noInput() {
 
-        State testState = new State();
+        State testState = new State(list);
         assertNotNull(testState,"Failed to construct state object.");
     }
 
@@ -29,7 +32,7 @@ public class StateTests {
     @Test
     void test_noWin() {
 
-        State testState = new State();
+        State testState = new State(list);
         boolean winner = testState.hasWin();
         assertFalse(winner,"Game won despite no state update from default.");
     }
@@ -46,7 +49,7 @@ public class StateTests {
     @Test
     void test_toString() {
 
-        State testState = new State();
+        State testState = new State("BLAST");
         String expect = "State{secretWord='BLAST', letterStatus=[0, 0, 0, 0, 0]}";
         String actual = testState.toString();
         assertEquals(expect,actual,"toString() method failed to produce expected string.");

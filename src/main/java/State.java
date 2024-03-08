@@ -7,15 +7,15 @@ public class State {
     private final String secretWord;
     private int[] letterStatus;
     private final int WORD_LENGTH = 5;
-    private final String DEFAULT_WORD = "BLAST";
+    private final Random INDEX = new Random();
 
     private final int NO_MATCH = 0;
     private final int IN_WORD = 1;
     private final int EXACT_MATCH = 2;
 
-    public State()
+    public State(ArrayList<String> words)
     {
-         secretWord = DEFAULT_WORD;
+         secretWord = words.get(INDEX.nextInt(words.size()));
          letterStatus = new int[WORD_LENGTH];
          for (int i = 0; i < WORD_LENGTH;i++)
          {

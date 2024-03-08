@@ -9,6 +9,6 @@ public class WordGame {
 
     public static void printWelcome()
     {
-        System.out.println("Hi! We're starting a game.");
+        System.out.println("Welcome to wordle! A new game has been started and the guess counter is currently 0.");
     }
 }
