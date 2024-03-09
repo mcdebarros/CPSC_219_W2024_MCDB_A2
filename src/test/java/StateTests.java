@@ -7,8 +7,9 @@ public class StateTests {
     ArrayList<String> list = new ArrayList<>();
 
     @Test
-    void test_constructor_noInput() {
+    void test_constructor_random() {
 
+        list.add("SAUCE"); list.add("BONES"); list.add("BREAK");
         State testState = new State(list);
         assertNotNull(testState,"Failed to construct state object.");
     }
@@ -32,6 +33,7 @@ public class StateTests {
     @Test
     void test_noWin() {
 
+        list.add("SAUCE"); list.add("BONES"); list.add("BREAK");
         State testState = new State(list);
         boolean winner = testState.hasWin();
         assertFalse(winner,"Game won despite no state update from default.");
