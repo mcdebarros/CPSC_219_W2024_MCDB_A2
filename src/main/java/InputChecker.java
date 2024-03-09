@@ -34,3 +34,4 @@ public class InputChecker {
         return (word != null);
     }
 }
+
